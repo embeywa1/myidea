@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,18 +35,9 @@
             
             <div class="flex flex-col items-center text-center mt-4 z-10">
                 <a href="#" id="logo-link" class="group flex flex-col items-center transition-transform duration-300 hover:scale-105" title="Go to Homepage">
-                    <div class="relative w-24 h-24 mb-4 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-[0_4px_12px_rgba(16,185,129,0.2)]">
-                            <path d="M50 5L15 20V50C15 72 50 95 50 95C50 95 85 72 85 50V20L50 5Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round" fill="#042218"/>
-                            <path d="M45 30H55C60 30 63 33 63 37C63 40 61 43 57 44C62 45 64 48 64 53C64 58 60 61 55 61H45V30Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-                            <path d="M50 25V30M50 61V66M45 45H57" stroke="currentColor" stroke-width="3"/>
-                            <rect x="26" y="44" width="12" height="10" rx="2" fill="currentColor"/>
-                            <path d="M29 44V40C29 38 31 36 33 36C35 36 37 38 37 40V44" stroke="currentColor" stroke-width="2"/>
-                            <rect x="70" y="22" width="4" height="4" fill="currentColor"/>
-                            <rect x="76" y="25" width="3" height="3" fill="currentColor"/>
-                            <rect x="72" y="30" width="5" height="5" fill="currentColor"/>
-                        </svg>
-                    </div>
+               <div class="w-full max-w-[240px] px-2 transition-transform duration-300">
+                 <img src="b.e.logo.png" alt="Bitcoin Escrow Logo" class="w-full h-auto drop-shadow-[0_4px_12px_rgba(16,185,129,0.15)]">
+               </div>
                     <h1 class="text-2xl font-bold tracking-wider uppercase text-slate-100">Bitcoin Escrow</h1>
                     <div class="flex items-center gap-2 mt-1 w-full justify-center">
                         <div class="h-[1px] w-8 bg-emerald-500/50"></div>
@@ -165,11 +156,11 @@
                     <div class="flex-grow border-t border-slate-200"></div>
                 </div>
 
-                <div class="text-center pt-2">
-                    <p class="text-sm text-slate-600 font-medium">
-                        New to Bitcoin Escrow? <a href="#" class="text-emerald-800 font-semibold hover:underline decoration-2 ml-1">Create Account</a>
-                    </p>
-                </div>
+           <div class="text-center pt-2">
+         <p class="text-sm text-slate-600 font-medium">
+        New to Bitcoin Escrow? <a href="index.html" class="text-emerald-800 font-semibold hover:underline decoration-2 ml-1">Create Account</a>
+        </p>
+            </div>         
 
             </form>
         </div>
@@ -199,12 +190,17 @@
                 
                 alert('Login successful!');
                 // window.location.href = '/dashboard.html';
-                
-            } catch (error) {
-                console.error('Login Error:', error);
-                alert(error.response?.data?.detail || 'Invalid email or password.');
-            }
-        });
+           
+              } catch (error) {
+            console.error('Login Error:', error);
+           if (error.response && error.response.data) {
+        // Handlers default DRF non_field_errors or detail strings
+            const errorMsg = error.response.data.detail || JSON.stringify(error.response.data);
+        alert('Login failed: ' + errorMsg);
+        } else {
+        alert('Login failed. Is the backend server running?');
+    }
+}     
     </script>
 
 </body>
